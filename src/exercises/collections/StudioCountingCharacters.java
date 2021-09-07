@@ -1,8 +1,11 @@
 package exercises.collections;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import static java.lang.Character.*;
 
 public class StudioCountingCharacters {
     public static void main(String[] args) {
@@ -16,24 +19,39 @@ public class StudioCountingCharacters {
 
         //Prompt the user to enter string to count characters
         System.out.println("Please enter the string to count characters: ");
-        String newString = input.nextLine().toLowerCase();
+        String newString ="";
+        try {
+            //the file to be opened for reading
+            FileInputStream fis = new FileInputStream("src/exercises/collections/Demo.txt");
+            Scanner sc = new Scanner(fis);    //file to be scanned
+            //returns true if there is another line to read
+            while (sc.hasNextLine()) {
+//                System.out.println(sc.nextLine());      //returns the line that was skipped
+                newString +=sc.nextLine();
+            }
+            sc.close();     //closes the scanner
+            System.out.println(newString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //Converting string to array of character and make case-insensitive
         char[] characterInString = newString.toLowerCase().toCharArray();
 
         //Filling the character count HashMap
         for (char c : characterInString) {
-            if(!myCountChar.containsKey(c)){
-                myCountChar.put(c,1);
-            }else {
+            if (!isLetterOrDigit(c)) {
+            } else if (!myCountChar.containsKey(c)) {
+                myCountChar.put(c, 1);
+            } else {
                 int count = myCountChar.get(c) + 1;
-                myCountChar.put(c,count);
+                myCountChar.put(c, count);
             }
         }
 
         //Print the character and its count
-        for(Map.Entry<Character, Integer> myChar : myCountChar.entrySet()){
-            System.out.println(myChar.getKey() + ": "+ myChar.getValue() );
+        for (Map.Entry<Character, Integer> myChar : myCountChar.entrySet()) {
+            System.out.println(myChar.getKey() + ": " + myChar.getValue());
         }
     }
 }
