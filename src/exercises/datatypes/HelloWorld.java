@@ -1,5 +1,6 @@
 package exercises.datatypes;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class HelloWorld {

@@ -1,0 +1,1 @@
+this is a demo text for file reader 3.8 studio counting characters

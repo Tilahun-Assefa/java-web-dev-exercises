@@ -1,6 +1,7 @@
 package exercises.collections;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -19,7 +20,7 @@ public class StudioCountingCharacters {
 
         //Prompt the user to enter string to count characters
         System.out.println("Please enter the string to count characters: ");
-        String newString ="";
+        String newString = "";
         try {
             //the file to be opened for reading
             FileInputStream fis = new FileInputStream("src/exercises/collections/Demo.txt");
@@ -27,7 +28,7 @@ public class StudioCountingCharacters {
             //returns true if there is another line to read
             while (sc.hasNextLine()) {
 //                System.out.println(sc.nextLine());      //returns the line that was skipped
-                newString +=sc.nextLine();
+                newString += sc.nextLine();
             }
             sc.close();     //closes the scanner
             System.out.println(newString);
@@ -40,10 +41,9 @@ public class StudioCountingCharacters {
 
         //Filling the character count HashMap
         for (char c : characterInString) {
-            if (!isLetterOrDigit(c)) {
-            } else if (!myCountChar.containsKey(c)) {
+           if (isLetterOrDigit(c) && !myCountChar.containsKey(c)) {
                 myCountChar.put(c, 1);
-            } else {
+            } else if(isLetterOrDigit(c)){
                 int count = myCountChar.get(c) + 1;
                 myCountChar.put(c, count);
             }

@@ -9,8 +9,10 @@ public class Area {
 
         System.out.println("Calculating Circle Area");
         System.out.println("********************************");
-        System.out.print("Enter radius: ");
-        if(in.hasNextDouble()){
+        System.out.print("Enter radius Or ('Enter') to quit: ");
+//        String check = in.nextLine();
+
+        if (in.hasNextDouble()) {
             do {
                 radius = in.nextDouble();
                 if (radius < 0) {
@@ -19,7 +21,7 @@ public class Area {
             } while (radius < 0);
             double area = Circle.getArea(radius);
             System.out.println("Area of Circle of radius " + radius + " is " + area);
-        }else {
+        } else {
             System.out.println("Wrong input ");
         }
     }
